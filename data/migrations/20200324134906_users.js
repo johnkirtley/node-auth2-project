@@ -8,6 +8,7 @@ exports.up = function(knex) {
 			.unique();
 
 		user.string('password').notNullable();
+		user.string('department').notNullable();
 	});
 };
 
