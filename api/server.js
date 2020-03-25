@@ -18,3 +18,13 @@ server.get('/', (req, res) => {
 });
 
 module.exports = server;
+
+// function checkDepartment(role) {
+// 	return (req, res, next) => {
+// 		if (req.decodedToken && req.decodedToken.department === role) {
+// 			next();
+// 		} else {
+// 			res.status(403).json({ message: 'Unauthorized' });
+// 		}
+// 	};
+// }

@@ -58,7 +58,8 @@ router.get('/logout', (req, res) => {
 function generateToken(user) {
 	const payload = {
 		username: user.username,
-		role: user.role || 'user'
+		role: user.role || 'user',
+		department: user.department
 	};
 
 	const options = {
