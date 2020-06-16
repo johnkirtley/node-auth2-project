@@ -14,10 +14,10 @@ router.post('/register', (req, res) => {
 	info.password = hash;
 
 	Users.add(info)
-		.then(user => {
+		.then((user) => {
 			res.status(201).json(user);
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log('Error adding user', err);
 		});
 });
@@ -30,17 +30,12 @@ router.post('/login', (req, res) => {
 			if (user && bcrypt.compareSync(password, user.password)) {
 				const token = generateToken(user);
 
-				// req.session.user = {
-				// 	id: user.id,
-				// 	username: user.username
-				// };
-
 				res.status(201).json({ message: 'Logged In', token });
 			} else {
 				res.status(401).json({ message: 'Error logging in' });
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log(err);
 		});
 });
@@ -59,11 +54,11 @@ function generateToken(user) {
 	const payload = {
 		username: user.username,
 		role: user.role || 'user',
-		department: user.department
+		department: user.department,
 	};
 
 	const options = {
-		expiresIn: '1h'
+		expiresIn: '1h',
 	};
 
 	return jwt.sign(payload, jwtSecret, options);
